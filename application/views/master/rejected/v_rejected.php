@@ -40,10 +40,10 @@
                             <td><?= $data->news_head ?></td>
                             <td class="text-center"><?= $data->updated_news == null ? $data->created_news : $data->updated_news ?></td>
                             <td class="text-center">
-                                <a href="<?= site_url('Waiting_approve/preview/' . $data->keluhan_id) ?>" class="btn btn-default">
+                                <a href="<?= site_url('Rejected/preview/' . $data->keluhan_id) ?>" class="btn btn-default">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="<?= site_url('Waiting_approve/edit/' . $data->keluhan_id) ?>" class="btn btn-success">
+                                <a href="<?= site_url('Rejected/edit/' . $data->keluhan_id) ?>" class="btn btn-success">
                                     <i class=" fa fa-edit"></i>
                                 </a>
                             </td>

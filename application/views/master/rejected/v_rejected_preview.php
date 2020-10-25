@@ -1,5 +1,5 @@
 <section class="content-header">
-    <h1>Preview Keluhan <small>Keluhan</small></h1>
+    <h1>Preview Rejected <small>Rejected</small></h1>
     <ol class="breadcrumb">
         <li>
             <a href="<?= site_url('Dashboard') ?>">
@@ -7,10 +7,10 @@
             </a>
         </li>
         <li>
-            <a href="<?= site_url('Keluhan') ?>">Keluhan</a>
+            <a href="<?= site_url('Rejected') ?>">Rejected</a>
         </li>
         <li class="active">
-            Preview
+            Rejected
         </li>
     </ol>
 </section>
@@ -18,9 +18,9 @@
     <div class="box box-primary">
         <div class="box-header">
             <h4>
-                Preview Keluhan
+                Preview Rejected
                 <div class="pull-right">
-                    <a href="<?= site_url('Keluhan') ?>" class="btn btn-warning">
+                    <a href="<?= site_url('Rejected') ?>" class="btn btn-warning">
                         <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>

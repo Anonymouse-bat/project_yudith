@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Blank Page</title>
+    <title>Main Menu | <?= $this->fungsi->user_login()->level == 1 ? 'Admin' : 'Member' ?></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="<?= base_url('assets') ?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets') ?>/bower_components/font-awesome/css/font-awesome.min.css">
@@ -44,19 +44,46 @@
 
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                        <!--  Show Notif -->
+                        <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                            <!-- Waiting Approved  -->
+                            <li class="dropdown notifications-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-hourglass-start"></i>
+                                    <span class="label label-success">1</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have <b>10</b> notifications</li>
+                                    <li>
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-envelope-o text-aqua"></i> 5 Berita Member Hariini, Approve Yuk!
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">View all</a></li>
+                                </ul>
+                            </li>
+                        <?php } ?>
+                        <!-- End Waiting Approved -->
+
+                        <!-- News Today -->
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-danger">2</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
+                                <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                    <li class="header">You have 5 notifications</li>
+                                <?php } ?>
                                 <li>
-                                    <!-- inner menu: contains the actual data -->
                                     <ul class="menu">
                                         <li>
                                             <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                                <i class="fa fa-envelope-open-o text-aqua"></i> 5 Berita Baru Hariini
                                             </a>
                                         </li>
                                     </ul>
@@ -64,23 +91,48 @@
                                 <li class="footer"><a href="#">View all</a></li>
                             </ul>
                         </li>
+                        <!-- End News Today -->
+
+                        <!-- Users -->
+                        <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                            <li class="dropdown notifications-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user-o"></i>
+                                    <span class="label label-warning">3</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 10 notifications</li>
+                                    <li>
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-users text-aqua"></i> 5 Member Baru Hariini
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">View all</a></li>
+                                </ul>
+                            </li>
+                        <?php } ?>
+                        <!-- Users -->
+                        <!-- End Show Notif -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?= base_url('assets') ?>/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs"><?= ucfirst($this->fungsi->user_login()->nama_lengkap) ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
                                     <img src="<?= base_url('assets') ?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                                     <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        <?= ucfirst($this->fungsi->user_login()->alamat) ?>
+                                        <small><?= $this->fungsi->user_login()->level == 1 ? 'Admin' : 'Member' ?></small>
                                     </p>
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default">Profile</a>
+                                        <a href="<?= site_url('Users') ?>" class="btn btn-default">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="<?= site_url('Auth/logout') ?>" class="btn btn-danger">Sign out</a>
@@ -100,7 +152,7 @@
                         <img src="<?= base_url('assets') ?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p><?= ucfirst($this->fungsi->user_login()->nama_lengkap) ?></p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>

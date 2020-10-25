@@ -9,6 +9,7 @@ class Rejected extends CI_Controller
         check_not_login();
         $this->load->library('form_validation');
         $this->load->model('Rejected_m');
+        check_admin_users();
     }
 
     public function index()
@@ -24,17 +25,23 @@ class Rejected extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
 
-            $data['row'] = $this->Waiting_approve_m->get($id)->row();
+            $data['row'] = $this->Rejected_m->get($id)->row();
             $this->template->load('v_template', 'master/rejected/v_rejected_edit', $data);
         } else {
             $post = $this->input->post(NULL, TRUE);
 
-            $this->Waiting_approve_m->edit($post);
+            $this->Rejected_m->edit($post);
 
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
                 redirect('Waiting_approve');
             }
         }
+    }
+
+    public function preview($id)
+    {
+        $data['row'] = $this->Rejected_m->get($id)->row();
+        $this->template->load('v_template', 'master/rejected/v_rejected_preview', $data);
     }
 }

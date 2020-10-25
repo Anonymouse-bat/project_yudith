@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <h1><?= $row->news_head ?></h1>
-                    <small style="opacity: 0.7;"><?= $row->nama_lengkap  ?> | <?= $row->updated_news == null ? $row->created_news : $row->updated_news ?></small>
+                    <small style="opacity: 0.7;"><?= $row->nama_lengkap  ?> | <?= $row->updated_news == null ? $row->created_news : $row->updated_news ?> <?= $row->updated_news == NULL ? '' : '(Updated)' ?> </small>
                     <hr>
                     <?= $row->messsage_content ?>
                 </div>

@@ -9,6 +9,7 @@ class Waiting_approve extends CI_Controller
         check_not_login();
         $this->load->library('form_validation');
         $this->load->model('Waiting_approve_m');
+        check_admin_users();
     }
 
     public function index()

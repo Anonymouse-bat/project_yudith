@@ -13,7 +13,7 @@ class Keluhan_m extends CI_Model
         }
         $this->db->join('user', 'user.user_id = keluhan.user_id');
         $this->db->where('keluhan.user_id =', $this->session->userdata('user_id'));
-        $this->db->order_by('keluhan.created', 'DESC');
+        $this->db->order_by('created_news', 'DESC');
         $query = $this->db->get();
 
         return $query;

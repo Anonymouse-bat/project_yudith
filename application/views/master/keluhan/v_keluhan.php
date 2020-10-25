@@ -32,6 +32,7 @@
                         <th class="text-center">#</th>
                         <th class="text-center">Kepala Berita</th>
                         <th class="text-center">Status</th>
+                        <th class="text-center">Tgl Berita</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -55,7 +56,9 @@
                                     <span class="btn btn-primary">Dalam Antrian</span>
                                 </td>
                             <?php } ?>
-
+                            <td class="text-center">
+                                <?= $data->created_news ?>
+                            </td>
                             <td class="text-center">
                                 <a href="<?= site_url('Keluhan/preview/' . $data->keluhan_id) ?>" class="btn btn-default">
                                     <i class="fa fa-eye"></i>

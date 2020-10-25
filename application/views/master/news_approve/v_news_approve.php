@@ -43,7 +43,7 @@
                             <td><?= $no++ ?></td>
                             <td><?= $data->nama_lengkap ?></td>
                             <td><?= $data->news_head ?></td>
-                            <td class="text-center"><?= $data->updated_news == null ? $data->created_news : $data->updated_news ?></td>
+                            <td class="text-center"><?= $data->created_news ?></td>
                             <td class="text-center">
                                 <a href="<?= site_url('News_approve/preview/' . $data->keluhan_id) ?>" class="btn btn-success">
                                     <i class="fa fa-eye"></i>
