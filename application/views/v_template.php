@@ -1,3 +1,7 @@
+<?php
+date_default_timezone_set("Asia/Bangkok");
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -58,7 +62,7 @@
                                         <ul class="menu">
                                             <li>
                                                 <a href="#">
-                                                    <i class="fa fa-envelope-o text-aqua"></i> 5 Berita Member Hariini, Approve Yuk!
+                                                    <i class="fa fa-envelope-o text-aqua"></i> 5 Member Hariini, Approve Yuk!
                                                 </a>
                                             </li>
                                         </ul>
@@ -71,24 +75,31 @@
 
                         <!-- News Today -->
                         <li class="dropdown notifications-menu">
+                            <?php
+                            $date  = date('Y-m-d');
+                            $query = $this->db->query("SELECT * FROM keluhan WHERE date_news = '$date' AND status = 1");
+                            $news_today = $query->num_rows();
+                            ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="label label-danger">2</span>
+                                <span class="label label-danger"><?= $news_today; ?></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <?php if ($this->fungsi->user_login()->level == 1) { ?>
-                                    <li class="header">You have 5 notifications</li>
-                                <?php } ?>
                                 <li>
                                     <ul class="menu">
                                         <li>
-                                            <a href="#">
-                                                <i class="fa fa-envelope-open-o text-aqua"></i> 5 Berita Baru Hariini
+                                            <a href="<?= site_url('News_approve/index/' . $date) ?>">
+                                                <i class="fa fa-envelope-open-o text-aqua"></i>
+                                                <?php if ($news_today == NULL) { ?>
+                                                    Belum Ada Berita Baru Hariini
+                                                <?php } else { ?>
+                                                    Ada <b><?= $news_today; ?></b> Berita Baru Hariini
+                                                <?php } ?>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="footer"><a href="#">View all</a></li>
+                                <li class="footer"><a href="<?= site_url('News_approve'); ?>">View all</a></li>
                             </ul>
                         </li>
                         <!-- End News Today -->
@@ -96,35 +107,52 @@
                         <!-- Users -->
                         <?php if ($this->fungsi->user_login()->level == 1) { ?>
                             <li class="dropdown notifications-menu">
+                                <?php
+                                $query = $this->db->query("SELECT * FROM user WHERE is_active = 0");
+                                $non_aktif = $query->num_rows();
+                                ?>
+
+                                <?php
+                                $date  = date('Y-m-d');
+                                $query = $this->db->query("SELECT * FROM user WHERE date_user = '$date' AND is_active = 0");
+                                $member_harini = $query->num_rows();
+                                ?>
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-user-o"></i>
-                                    <span class="label label-warning">3</span>
+                                    <span class="label label-warning"><?= $member_harini; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have 10 notifications</li>
+                                    <li class="header">Ada <b><?= $non_aktif; ?></b> Member belum Aktif</li>
                                     <li>
                                         <ul class="menu">
                                             <li>
-                                                <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i> 5 Member Baru Hariini
+                                                <a href="<?= site_url('Users/v_users_admin/' . $date) ?>">
+
+                                                    <i class="fa fa-users text-aqua"></i>
+                                                    <?php if ($member_harini == NULL) { ?>
+                                                        Belum Ada Member Baru Hariini
+                                                    <?php } else { ?>
+                                                        Ada <b><?= $member_harini; ?></b> Member Baru Hariini
+                                                    <?php } ?>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="footer"><a href="#">View all</a></li>
+                                    <li class="footer"><a href="<?= site_url('Users/v_users_admin') ?>">View all</a></li>
                                 </ul>
                             </li>
                         <?php } ?>
                         <!-- Users -->
                         <!-- End Show Notif -->
-                        <li class="dropdown user user-menu">
+                        <li class=" dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?= base_url('assets') ?>/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <img src="<?= $this->fungsi->user_login()->jk == 1 ? base_url('assets/dist/img/male.png') : base_url('assets/dist/img/female.png') ?>" class="user-image" alt="User Image">
                                 <span class="hidden-xs"><?= ucfirst($this->fungsi->user_login()->nama_lengkap) ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
-                                    <img src="<?= base_url('assets') ?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <img src="<?= $this->fungsi->user_login()->jk == 1 ? base_url('assets/dist/img/male.png') : base_url('assets/dist/img/female.png') ?>" class="img-circle" alt="User Image">
                                     <p>
                                         <?= ucfirst($this->fungsi->user_login()->alamat) ?>
                                         <small><?= $this->fungsi->user_login()->level == 1 ? 'Admin' : 'Member' ?></small>
@@ -149,7 +177,7 @@
             <section class="sidebar">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="<?= base_url('assets') ?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="<?= $this->fungsi->user_login()->jk == 1 ? base_url('assets/dist/img/male.png') : base_url('assets/dist/img/female.png') ?>" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p><?= ucfirst($this->fungsi->user_login()->nama_lengkap) ?></p>

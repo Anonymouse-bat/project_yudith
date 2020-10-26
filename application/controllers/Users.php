@@ -24,7 +24,10 @@ class Users extends CI_Controller
     public function v_users_admin()
     {
         check_admin_users();
-        $data['row']    = $this->Users_m->get()->result();
+
+        $header = $this->uri->segment(3);
+
+        $data['row']    = $this->Users_m->get_header($header)->result();
         $this->template->load('v_template', 'users/v_users_admin', $data);
     }
 
@@ -42,8 +45,8 @@ class Users extends CI_Controller
 
     public function edit_admin($id)
     {
-        $this->form_validation->set_rules('name', 'Username', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
+        $this->form_validation->set_rules('no_tlp', 'No Telephone', 'trim|required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|min_length[4]|matches[retype_password]');
         $this->form_validation->set_rules('retype_password', 'Password Confirmation', 'trim|matches[password]');

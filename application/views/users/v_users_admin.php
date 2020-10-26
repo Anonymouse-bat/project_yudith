@@ -28,6 +28,7 @@
                         <th class="text-center">Alamat</th>
                         <th class="text-center">Is Active</th>
                         <th class="text-center">Level</th>
+                        <th class="text-center">Approved By</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -47,13 +48,20 @@
                                 <?php } ?>
                             </td>
                             <td class="text-center"><?= $data->level == 1 ? 'Admin' : 'Member' ?></td>
+                            <td class="text-center"><?= $data->approve_by == NULL ? '-' : $data->approve_by ?></td>
                             <td class="text-center">
                                 <a href="<?= site_url('Users/edit_admin/' . $data->user_id) ?>" class="btn btn-success btn-sm">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="<?= site_url('Users/del/' . $data->user_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Data <?= $data->nama_lengkap ?> akan dihapus secara permanen, apakah anda yakin  ?')">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                                <?php if ($this->fungsi->user_login()->user_id == $data->user_id) { ?>
+                                    <button disabled class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                <?php } else { ?>
+                                    <a href="<?= site_url('Users/del/' . $data->user_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Data <?= $data->nama_lengkap ?> akan dihapus secara permanen, apakah anda yakin  ?')">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>

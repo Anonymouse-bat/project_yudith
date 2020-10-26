@@ -42,7 +42,7 @@
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
                             <td><?= $data->news_head ?></td>
-
+                            <!-- Status -->
                             <?php if ($data->is_deleted_keluhan == 1) { ?>
                                 <td class="text-center">
                                     <span class="btn btn-danger">Rejected</span>
@@ -56,9 +56,11 @@
                                     <span class="btn btn-primary">Dalam Antrian</span>
                                 </td>
                             <?php } ?>
+                            <!-- End Status -->
                             <td class="text-center">
                                 <?= $data->created_news ?>
                             </td>
+                            <!-- Edit -->
                             <td class="text-center">
                                 <a href="<?= site_url('Keluhan/preview/' . $data->keluhan_id) ?>" class="btn btn-default">
                                     <i class="fa fa-eye"></i>
@@ -67,7 +69,7 @@
                                     <i class=" fa fa-edit"></i>
                                 </a>
                                 <?php if ($data->status == 1 and $data->level == 2) { ?>
-                                    <button disabled class="btn btn-danger">
+                                    <button disabled class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 <?php } else { ?>
@@ -76,6 +78,7 @@
                                     </a>
                                 <?php } ?>
                             </td>
+                            <!-- End Edit -->
                         </tr>
                     <?php } ?>
                 </tbody>

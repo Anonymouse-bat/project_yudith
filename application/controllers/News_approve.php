@@ -12,7 +12,8 @@ class News_approve extends CI_Controller
 
     public function index()
     {
-        $data['row'] = $this->News_approve_m->get()->result();
+        $header = $this->uri->segment(3);
+        $data['row'] = $this->News_approve_m->get_news($header)->result();
         $this->template->load('v_template', 'master/news_approve/v_news_approve', $data);
     }
 

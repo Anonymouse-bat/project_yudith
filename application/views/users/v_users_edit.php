@@ -33,15 +33,15 @@
                 <div class="col-md-6 col-md-offset-3">
                     <form action="" method="POST">
                         <input type="hidden" name="user_id" value="<?= $row->user_id ?>">
-                        <div class="form-group <?= form_error('name') == true ? 'has-error' : null ?>">
+                        <div class="form-group <?= form_error('nama_lengkap') == true ? 'has-error' : null ?>">
                             <label for="">Nama Lengkap <i class="text-danger">* </i></label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Nama Lengkap" value="<?= $this->input->post('nama_lengkap') ?? $row->nama_lengkap ?>" autocomplete="off">
-                            <?= form_error('name', '<div class="text-danger">', '</div>'); ?>
+                            <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" placeholder="Nama Lengkap" value="<?= $this->input->post('nama_lengkap') ?? $row->nama_lengkap ?>" autocomplete="off">
+                            <?= form_error('nama_lengkap', '<div class="text-danger">', '</div>'); ?>
                         </div>
                         <div class="form-group <?= form_error('email') == true ? 'has-error' : null ?>">
                             <label for="">No Telephone <i class="text-danger">* </i></label>
-                            <input type="text" name="email" id="email" placeholder="Email" class="form-control" value="<?= $this->input->post('no_tlp') ?? $row->no_tlp ?>" autocomplete="off">
-                            <?= form_error('email', '<div class="text-danger">', '</div>'); ?>
+                            <input type="text" name="no_tlp" id="no_tlp" placeholder="Email" class="form-control" value="<?= $this->input->post('no_tlp') ?? $row->no_tlp ?>" autocomplete="off">
+                            <?= form_error('no_tlp', '<div class="text-danger">', '</div>'); ?>
                         </div>
                         <div class="form-group <?= form_error('alamat') == true ? 'has-error' : null ?>">
                             <label for="">Alamat <i class="text-danger">* </i></label>

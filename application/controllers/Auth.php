@@ -85,6 +85,7 @@ class Auth extends CI_Controller
             $params['password']             = password_hash($post['password'], PASSWORD_DEFAULT);
             $params['is_active']            = 0;
             $params['level']                = 2;
+            $params['date_user']            = date('Y-m-d');
 
             $this->db->insert('user', $params);
             $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');

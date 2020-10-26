@@ -18,4 +18,20 @@ class News_approve_m extends CI_Model
 
         return $query;
     }
+
+    public function get_news($id = NULL)
+    {
+        $this->db->select('*, keluhan.created as created_news, keluhan.updated as updated_news');
+        $this->db->from('keluhan');
+        if ($id != NULL) {
+            $this->db->where('date_news =', $id);
+            $this->db->where('status =', 1);
+        }
+        $this->db->join('user', 'user.user_id = keluhan.user_id');
+        $this->db->where('keluhan.status =', 1);
+        $this->db->order_by('keluhan.created', 'DESC');
+        $query = $this->db->get();
+
+        return $query;
+    }
 }

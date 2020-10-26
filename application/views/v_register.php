@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group has-feedback <?= form_error('jk') != NULL ? 'has-error' : null ?>">
                     <select id="jk" name="jk" class="form-control select2_jk">
-                        <option value="">-- Pilih Gander --</option>
+                        <option value="">-- Pilih Jenis Kelamin --</option>
                         <option value="1" <?= set_value('jk') == 1 ? 'selected' : null ?>>Laki-Laki</option>
                         <option value="2" <?= set_value('jk') == 2 ? 'selected' : null ?>>Perempuan</option>
                     </select>
