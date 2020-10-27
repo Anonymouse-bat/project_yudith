@@ -34,4 +34,14 @@ class News_approve_m extends CI_Model
 
         return $query;
     }
+
+    public function del($id)
+    {
+        $params['rejected_by']           = $this->session->userdata('user_id');
+        $params['is_deleted']            = 1;
+        $params['status']                = 0;
+
+        $this->db->where('keluhan_id', $id);
+        $this->db->update('keluhan', $params);
+    }
 }

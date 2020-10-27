@@ -20,7 +20,7 @@
             <h4>
                 Add Keluhan
                 <div class="pull-right">
-                    <a href="<?= site_url('Keluhan') ?>" class="btn btn-warning">
+                    <a href="<?= site_url('Keluhan') ?>" class="btn btn-warning" data-toggle="show" title="Back">
                         <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>
@@ -46,8 +46,8 @@
                         <?= form_error('messsage_content', '<div class="text-danger">', '</div>'); ?>
                     </div>
                     <div class="form-group">
-                        <button type="reset" class="btn btn-danger"><i class="fa fa-rotate-left"></i></button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                        <button type="reset" class="btn btn-danger" data-toggle="show" title="Reset"><i class="fa fa-rotate-left"></i></button>
+                        <button type="submit" class="btn btn-primary" data-toggle="show" title="Submit"><i class="fa fa-plus"></i></button>
                     </div>
                     </form>
                 </div>

@@ -286,6 +286,11 @@ date_default_timezone_set("Asia/Bangkok");
             }
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="show"]').tooltip();
+        });
+    </script>
 </body>
 
 </html>

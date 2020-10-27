@@ -1,5 +1,5 @@
 <section class="content-header">
-    <h1>Data Keluhan <small>Keluhan</small></h1>
+    <h1>Edit Rejected <small>Rejected</small></h1>
     <ol class="breadcrumb">
         <li>
             <a href="<?= site_url('Dashboard') ?>">
@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="<?= site_url('Keluhan') ?>">Keluhan</a>
+            <a href="<?= site_url('Rejected') ?>">Rejected</a>
         </li>
         <li class="active">
             Edit
@@ -18,9 +18,9 @@
     <div class="box box-success">
         <div class="box-header">
             <h4>
-                Edit Keluhan
+                Edit Rejected
                 <div class="pull-right">
-                    <a href="<?= site_url('Keluhan') ?>" class="btn btn-warning" data-toggle="show" title="Back">
+                    <a href="<?= site_url('Rejected') ?>" class="btn btn-warning" data-toggle="show" title="Back">
                         <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>
@@ -37,7 +37,7 @@
                             <?= form_error('news_head', '<div class="text-danger">', '</div>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="news_image">Image | <i class="text-danger">*</i> Max 5 Mb </label>
+                            <label for="news_image">Image </label>
                             <input type="file" name="news_image" id="news_image" class="form-control" placeholder="Kepala Berita" autocomplete="off">
                             <i class="text-danger">* Biarkan Kosong jika tidak ada</i>
                         </div>

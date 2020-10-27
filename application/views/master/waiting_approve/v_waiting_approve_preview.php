@@ -20,7 +20,7 @@
             <h4>
                 Preview Keluhan Member
                 <div class="pull-right">
-                    <a href="<?= site_url('Waiting_approve') ?>" class="btn btn-warning">
+                    <a href="<?= site_url('Waiting_approve') ?>" class="btn btn-warning" data-toggle="show" title="Back">
                         <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>

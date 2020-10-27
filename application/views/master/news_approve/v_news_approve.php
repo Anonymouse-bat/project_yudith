@@ -19,7 +19,7 @@
         <div class="box-header">
             <h4>Data Berita Terupdate
                 <div class="pull-right">
-                    <a href="<?= site_url('Keluhan/add') ?>" class="btn btn-primary">
+                    <a href="<?= site_url('Keluhan/add') ?>" class="btn btn-primary" data-toggle="show" title="Add">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
@@ -45,9 +45,14 @@
                             <td><?= $data->news_head ?></td>
                             <td class="text-center"><?= $data->created_news ?></td>
                             <td class="text-center">
-                                <a href="<?= site_url('News_approve/preview/' . $data->keluhan_id) ?>" class="btn btn-success">
+                                <a href="<?= site_url('News_approve/preview/' . $data->keluhan_id) ?>" class="btn btn-default" data-toggle="show" title="Preview">
                                     <i class="fa fa-eye"></i>
                                 </a>
+                                <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                    <a href="<?= site_url('News_approve/del/' . $data->keluhan_id) ?>" class="btn btn-danger" data-toggle="show" title="Hapus" onclick="return confirm('Data <?= $data->news_head ?> akan dihapus, Apakah Yakin ?')">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>

@@ -54,6 +54,6 @@ class Waiting_approve extends CI_Controller
     public function preview($id)
     {
         $data['row'] = $this->Waiting_approve_m->get($id)->row();
-        $this->template->load('v_template', 'master/waiting_approve/v_waiting_approve_approve', $data);
+        $this->template->load('v_template', 'master/waiting_approve/v_waiting_approve_preview', $data);
     }
 }

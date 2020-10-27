@@ -10,7 +10,7 @@
             <a href="<?= site_url('Rejected') ?>">Rejected</a>
         </li>
         <li class="active">
-            Rejected
+            Preview
         </li>
     </ol>
 </section>
@@ -20,7 +20,7 @@
             <h4>
                 Preview Rejected
                 <div class="pull-right">
-                    <a href="<?= site_url('Rejected') ?>" class="btn btn-warning">
+                    <a href="<?= site_url('Rejected') ?>" class="btn btn-warning" data-toggle="show" title="Back">
                         <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>

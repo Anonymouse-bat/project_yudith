@@ -40,13 +40,13 @@
                             <td><?= $data->news_head ?></td>
                             <td class="text-center"><?= $data->updated_news == null ? $data->created_news : $data->updated_news ?></td>
                             <td class="text-center">
-                                <a href="<?= site_url('Waiting_approve/preview/' . $data->keluhan_id) ?>" class="btn btn-default">
+                                <a href="<?= site_url('Waiting_approve/preview/' . $data->keluhan_id) ?>" class="btn btn-default" data-toggle="show" title="Preview">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="<?= site_url('Waiting_approve/edit/' . $data->keluhan_id) ?>" class="btn btn-success">
+                                <a href="<?= site_url('Waiting_approve/edit/' . $data->keluhan_id) ?>" class="btn btn-success" data-toggle="show" title="Edit">
                                     <i class=" fa fa-edit"></i>
                                 </a>
-                                <a href="<?= site_url('Waiting_approve/del/' . $data->keluhan_id) ?>" class="btn btn-danger" onclick="return confirm('Data <?= $data->news_head ?> akan dihapus, Apakah Yakin ?')">
+                                <a href="<?= site_url('Waiting_approve/del/' . $data->keluhan_id) ?>" class="btn btn-danger" data-toggle="show" title="Hapus" onclick="return confirm('Data <?= $data->news_head ?> akan dihapus, Apakah Yakin ?')">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

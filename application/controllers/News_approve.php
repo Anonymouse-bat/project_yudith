@@ -22,4 +22,17 @@ class News_approve extends CI_Controller
         $data['row'] = $this->News_approve_m->get($id)->row();
         $this->template->load('v_template', 'master/news_approve/v_news_approve_preview', $data);
     }
+
+    public function del()
+    {
+        check_admin_users();
+        $id = $this->uri->segment(3);
+
+        $this->News_approve_m->del($id);
+
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Success!</strong> Data berhasil dihapus </div>');
+            redirect('News_approve');
+        }
+    }
 }

@@ -20,7 +20,7 @@
             <h4>
                 Preview Keluhan
                 <div class="pull-right">
-                    <a href="<?= site_url('Keluhan') ?>" class="btn btn-warning">
+                    <a href="<?= site_url('Keluhan') ?>" class="btn btn-warning" data-toggle="show" title="Back">
                         <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>
@@ -31,6 +31,7 @@
                 <div class="col-md-6 col-md-offset-3">
                     <h1><?= $row->news_head ?></h1>
                     <small style="opacity: 0.7;"><?= $row->nama_lengkap  ?> | <?= $row->updated_news == null ? $row->created_news : $row->updated_news ?> <?= $row->updated_news == NULL ? '' : '(Updated)' ?> </small>
+                    <!-- Image -->
                     <?php if ($row->news_image == NULL) { ?>
                         <a href="<?= base_url('./uploads/news_image/image_not_found/image_not_available.png'); ?>" download>
                             <img src="<?= base_url('./uploads/news_image/image_not_found/image_not_available.png'); ?>" style="width: 800px; height: 400px;">

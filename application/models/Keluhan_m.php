@@ -26,7 +26,7 @@ class Keluhan_m extends CI_Model
 
         $params['keluhan_id']           = date('YmdHis') . '' . $uniqid . '-' . $this->session->userdata('user_id');
         $params['news_head']            = $post['news_head'];
-        $params['news_image']           = 123;
+        $params['news_image']           = $post['news_image'];
         $params['messsage_content']     = $post['messsage_content'];
         $params['user_id']              = $this->session->userdata('user_id');
         $params['status']               = 0;
