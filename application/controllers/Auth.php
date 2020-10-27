@@ -64,7 +64,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('jk', 'Gander', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         $this->form_validation->set_rules('id_provinsi', 'Provinsi', 'required|trim');
-        $this->form_validation->set_rules('foto_ktp', 'foto_ktp', 'required|trim');
+        // $this->form_validation->set_rules('foto_ktp', 'Foto KTP', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|matches[password]|min_length[4]');
         $this->form_validation->set_rules('retype_password', 'Password Confirmation', 'required|matches[password]');
 
@@ -73,23 +73,45 @@ class Auth extends CI_Controller
 
             $this->load->view('v_register', $data);
         } else {
-
             $post = $this->input->post(NULL, TRUE);
 
-            $params['nama_lengkap']         = $post['nama_lengkap'];
-            $params['no_tlp']               = $post['no_tlp'];
-            $params['jk']                   = $post['jk'];
-            $params['alamat']               = $post['alamat'];
-            $params['id_provinsi']          = $post['id_provinsi'];
-            $params['foto_ktp']             = 'user.png';
-            $params['password']             = password_hash($post['password'], PASSWORD_DEFAULT);
-            $params['is_active']            = 0;
-            $params['level']                = 2;
-            $params['date_user']            = date('Y-m-d');
+            var_dump($post);
 
-            $this->db->insert('user', $params);
-            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
-            redirect('Auth');
+            die();
+
+            $config['upload_path']          = './uploads/ktp_user/';
+            $config['allowed_types']        = 'jpg|jpeg|png';
+            $config['max_size']             = 2048;
+            $config['file_name']            = 'KTP-' . date('Y-m-d') . '-' . substr(md5(rand()), 0, 10);
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto_ktp')) {
+
+                $params['nama_lengkap']         = $post['nama_lengkap'];
+                $params['no_tlp']               = $post['no_tlp'];
+                $params['jk']                   = $post['jk'];
+                $params['alamat']               = $post['alamat'];
+                $params['id_provinsi']          = $post['id_provinsi'];
+                $params['foto_ktp']             = $this->upload->data('file_name');
+                $params['password']             = password_hash($post['password'], PASSWORD_DEFAULT);
+                $params['is_active']            = 0;
+                $params['level']                = 2;
+                $params['date_user']            = date('Y-m-d');
+
+
+                var_dump($params['foto_ktp']);
+                die();
+
+
+                $this->db->insert('user', $params);
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
+                redirect('Auth');
+            } else {
+                $error = $this->upload->display_errors();
+                $this->session->set_flashdata('message', $error);
+                redirect('Auth');
+            }
         }
     }
 

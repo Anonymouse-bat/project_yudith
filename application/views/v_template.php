@@ -175,7 +175,7 @@ date_default_timezone_set("Asia/Bangkok");
 
         <aside class="main-sidebar">
             <section class="sidebar">
-                <div class="user-panel">
+                <div class="user-panel" style="padding-top: 20px;">
                     <div class="pull-left image">
                         <img src="<?= $this->fungsi->user_login()->jk == 1 ? base_url('assets/dist/img/male.png') : base_url('assets/dist/img/female.png') ?>" class="img-circle" alt="User Image">
                     </div>
@@ -184,23 +184,8 @@ date_default_timezone_set("Asia/Bangkok");
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-                <ul class="sidebar-menu" data-widget="tree">
+                <ul class="sidebar-menu" data-widget="tree" style="padding-top: 15px;">
                     <li class="header">Main Page</li>
-                    <li <?= $this->uri->segment(1) == 'Dashboard' ? 'class="active"' : null ?>>
-                        <a href="<?= site_url('Dashboard') ?>">
-                            <i class="fa fa-dashboard"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
                     <li <?= $this->uri->segment(1) == 'Keluhan' ? 'class="active"' : null ?>>
                         <a href="<?= site_url('Keluhan') ?>">
                             <i class="fa fa-newspaper-o"></i>
@@ -228,6 +213,15 @@ date_default_timezone_set("Asia/Bangkok");
                             <span>Berita Terupdate</span>
                         </a>
                     </li>
+                    <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                        <li class="header">Laporan</li>
+                        <li <?= $this->uri->segment(1) == 'Users' ? 'class="active"' : null ?>>
+                            <a href="<?= site_url('Users') ?>">
+                                <i class="fa fa-bar-chart text-success"></i>
+                                <span>Laporan User</span>
+                            </a>
+                        </li>
+                    <?php } ?>
                     <li class="header">Users</li>
                     <li <?= $this->uri->segment(1) == 'Users' ? 'class="active"' : null ?>>
                         <a href="<?= site_url('Users') ?>">

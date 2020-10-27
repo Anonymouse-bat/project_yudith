@@ -31,8 +31,7 @@
 
         <div class="register-box-body">
             <p class="login-box-msg">Register a new membership</p>
-
-            <form action="" method="post">
+            <form action="<?= site_url('Auth/register') ?>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
                 <div class="form-group has-feedback <?= form_error('nama_lengkap') != NULL ? 'has-error' : null ?>">
                     <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Nama Lengkap" value="<?= set_value('nama_lengkap') ?>" autocomplete="off" autofocus>
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>

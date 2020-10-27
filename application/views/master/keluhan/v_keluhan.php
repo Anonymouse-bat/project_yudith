@@ -31,8 +31,8 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">Kepala Berita</th>
-                        <th class="text-center">Status</th>
                         <th class="text-center">Tgl Berita</th>
+                        <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -42,6 +42,10 @@
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
                             <td><?= $data->news_head ?></td>
+                            <td class="text-center">
+                                <?= $data->created_news ?>
+                            </td>
+
                             <!-- Status -->
                             <?php if ($data->is_deleted_keluhan == 1) { ?>
                                 <td class="text-center">
@@ -57,9 +61,6 @@
                                 </td>
                             <?php } ?>
                             <!-- End Status -->
-                            <td class="text-center">
-                                <?= $data->created_news ?>
-                            </td>
                             <!-- Edit -->
                             <td class="text-center">
                                 <a href="<?= site_url('Keluhan/preview/' . $data->keluhan_id) ?>" class="btn btn-default">
@@ -68,6 +69,7 @@
                                 <a href="<?= site_url('Keluhan/edit/' . $data->keluhan_id) ?>" class="btn btn-success">
                                     <i class=" fa fa-edit"></i>
                                 </a>
+                                <!-- End Preview -->
                                 <?php if ($data->status == 1 and $data->level == 2) { ?>
                                     <button disabled class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash"></i>

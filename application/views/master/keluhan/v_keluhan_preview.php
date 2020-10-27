@@ -31,6 +31,16 @@
                 <div class="col-md-6 col-md-offset-3">
                     <h1><?= $row->news_head ?></h1>
                     <small style="opacity: 0.7;"><?= $row->nama_lengkap  ?> | <?= $row->updated_news == null ? $row->created_news : $row->updated_news ?> <?= $row->updated_news == NULL ? '' : '(Updated)' ?> </small>
+                    <?php if ($row->news_image == NULL) { ?>
+                        <a href="<?= base_url('./uploads/news_image/image_not_found/image_not_available.png'); ?>" download>
+                            <img src="<?= base_url('./uploads/news_image/image_not_found/image_not_available.png'); ?>" style="width: 800px; height: 400px;">
+                        </a>
+                    <?php  } else { ?>
+                        <a href="<?= base_url('./uploads/news_image/') . $row->news_image ?>" download>
+                            <img src="<?= base_url('./uploads/news_image/') . $row->news_image ?>" style="width: 800px; height: 400px;">
+                        </a>
+                    <?php } ?>
+                    <small style="opacity: 0.8;"><i class="text-danger">*</i> Klik Image untuk Download</small>
                     <hr>
                     <?= $row->messsage_content ?>
                 </div>
