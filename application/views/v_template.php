@@ -215,8 +215,8 @@ date_default_timezone_set("Asia/Bangkok");
                     </li>
                     <?php if ($this->fungsi->user_login()->level == 1) { ?>
                         <li class="header">Laporan</li>
-                        <li <?= $this->uri->segment(1) == 'Users' ? 'class="active"' : null ?>>
-                            <a href="<?= site_url('Users') ?>">
+                        <li <?= $this->uri->segment(1) == 'Lap_users' ? 'class="active"' : null ?>>
+                            <a href="<?= site_url('Lap_users') ?>">
                                 <i class="fa fa-bar-chart text-success"></i>
                                 <span>Laporan User</span>
                             </a>

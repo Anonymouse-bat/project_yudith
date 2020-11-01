@@ -17,19 +17,19 @@ class Fungsi
 		return $user_data;
 	}
 
-	// function PdfGenerator($html, $filename, $paper)
-	// {
-	// 	$options = new Dompdf\Options();
-	// 	$options->set('isRemoteEnabled', TRUE);
+	function PdfGenerator($html, $filename, $paper)
+	{
+		$options = new Dompdf\Options();
+		$options->set('isRemoteEnabled', TRUE);
 
-	// 	$dompdf = new Dompdf\Dompdf($options);
+		$dompdf = new Dompdf\Dompdf($options);
 
-	// 	$dompdf->loadHtml($html);
-	// 	// (Optional) Setup the paper size and orientation
-	// 	$dompdf->setPaper('$paper', 'landscape');
-	// 	// Render the HTML as PDF
-	// 	$dompdf->render();
-	// 	// Output the generated PDF to Browser
-	// 	$dompdf->stream($filename, array('Attachment' => 0));
-	// }
+		$dompdf->loadHtml($html);
+		// (Optional) Setup the paper size and orientation
+		$dompdf->setPaper('$paper', 'landscape');
+		// Render the HTML as PDF
+		$dompdf->render();
+		// Output the generated PDF to Browser
+		$dompdf->stream($filename, array('Attachment' => 0));
+	}
 }
