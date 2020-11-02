@@ -83,7 +83,7 @@ class Users extends CI_Controller
 
         $error = $this->db->error();
         if ($error['code'] != 0) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Error!</strong> Data tidak dapat dihapus, karena suda berelasi dengan table lain</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Error!</strong> Data tidak dapat dihapus, karena data ini suda berelasi dengan table lain</div>');
             redirect('Customers');
         }
 
