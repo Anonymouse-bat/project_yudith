@@ -31,13 +31,26 @@
                         <th class="text-center">Nama Lengkap</th>
                         <th class="text-center">Jenis Kelamin</th>
                         <th class="text-center">No Telephone</th>
-                        <th class="text-center">Alamat</th>
+                        <th class="text-center" style="overflow: auto; margin: 0px; width: 302px;">Alamat</th>
                         <th class="text-center">Provinsi</th>
                         <th class="text-center">Created</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    <?php $no = 1; ?>
+                    <?php foreach ($get_user_data as $key => $data) { ?>
+                        <tr>
+                            <td class="text-center"><?= $no++ ?></td>
+                            <td><?= $data->nama_lengkap ?></td>
+                            <td class="text-center"><?= $data->jk == 1 ? 'Pria' : 'Wanita' ?></td>
+                            <td class="text-center"><?= $data->no_tlp ?></td>
+                            <td>
+                                <textarea name="" id="" rows="4" style="overflow: auto; margin: 0px; width: 302px; height: 45px;" readonly><?= $data->alamat ?></textarea>
+                            </td>
+                            <td class="text-center"><?= $data->nama_provinsi ?></td>
+                            <td class="text-center"><?= $data->created ?></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

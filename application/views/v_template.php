@@ -154,7 +154,7 @@ date_default_timezone_set("Asia/Bangkok");
                                 <li class="user-header">
                                     <img src="<?= $this->fungsi->user_login()->jk == 1 ? base_url('assets/dist/img/male.png') : base_url('assets/dist/img/female.png') ?>" class="img-circle" alt="User Image">
                                     <p>
-                                        <?= ucfirst($this->fungsi->user_login()->alamat) ?>
+                                        <?= ucfirst($this->fungsi->user_login()->nama_provinsi) ?>
                                         <small><?= $this->fungsi->user_login()->level == 1 ? 'Admin' : 'Member' ?></small>
                                     </p>
                                 </li>
@@ -218,7 +218,7 @@ date_default_timezone_set("Asia/Bangkok");
                         <li <?= $this->uri->segment(1) == 'Lap_users' ? 'class="active"' : null ?>>
                             <a href="<?= site_url('Lap_users') ?>">
                                 <i class="fa fa-bar-chart text-success"></i>
-                                <span>Laporan User</span>
+                                <span>Laporan Data User</span>
                             </a>
                         </li>
                     <?php } ?>

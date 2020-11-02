@@ -10,6 +10,7 @@ class Lap_users_m extends CI_Model
         $this->db->select('*');
         $this->db->from('user');
         $this->db->join('wilayah_provinsi', 'wilayah_provinsi.id_provinsi = user.id_provinsi ');
+        $this->db->where('is_active =', 1);
         $query = $this->db->get();
         return $query;
     }
@@ -21,6 +22,7 @@ class Lap_users_m extends CI_Model
         $this->db->from('user');
         $this->db->join('wilayah_provinsi', 'wilayah_provinsi.id_provinsi = user.id_provinsi ');
         $this->db->where('user.id_provinsi', $id);
+        $this->db->where('is_active =', 1);
         $query = $this->db->get();
         return $query;
     }
@@ -33,6 +35,7 @@ class Lap_users_m extends CI_Model
         $this->db->where('user.date_user >=', $post['start_date']);
         $this->db->where('user.date_user <=', $post['end_date']);
         $this->db->where('user.id_provinsi', $post['id_provinsi']);
+        $this->db->where('is_active =', 1);
         $query = $this->db->get();
         return $query;
     }
@@ -44,6 +47,7 @@ class Lap_users_m extends CI_Model
         $this->db->join('wilayah_provinsi', 'wilayah_provinsi.id_provinsi = user.id_provinsi ');
         $this->db->where('user.date_user >=', $post['start_date']);
         $this->db->where('user.date_user <=', $post['end_date']);
+        $this->db->where('is_active =', 1);
         $query = $this->db->get();
         return $query;
     }

@@ -30,7 +30,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">#</th>
-                        <th class="text-center">Kepala Berita</th>
+                        <th class="text-center" style="overflow: auto; margin: 0px; width: 302px;">Kepala Berita</th>
                         <th class="text-center">Tgl Berita</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
@@ -41,7 +41,9 @@
                     <?php foreach ($row as $key => $data) { ?>
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
-                            <td><?= $data->news_head ?></td>
+                            <td>
+                                <textarea name="" id="" rows="4" style="overflow: auto; margin: 0px; width: 302px; height: 45px;" readonly><?= $data->news_head ?></textarea>
+                            </td>
                             <td class="text-center">
                                 <?= $data->created_news ?>
                             </td>

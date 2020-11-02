@@ -13,10 +13,12 @@ class Lap_users extends CI_Controller
 
     public function index()
     {
-        $provinsi = $this->Auth_m->get_provinsi()->result();
+        $provinsi       = $this->Auth_m->get_provinsi()->result();
+        $get_user_data  = $this->Lap_users_m->get_user_data()->result();
 
         $data = [
-            'provinsi' => $provinsi
+            'provinsi' => $provinsi,
+            'get_user_data' => $get_user_data
         ];
 
         $this->template->load('v_template', 'laporan/laporan_data_user/v_lap_users', $data);

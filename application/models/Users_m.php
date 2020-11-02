@@ -11,6 +11,7 @@ class users_m extends CI_Model
         if ($id != NULL) {
             $this->db->where('user_id', $id);
         }
+        $this->db->join('wilayah_provinsi', 'wilayah_provinsi.id_provinsi = user.id_provinsi');
         $query = $this->db->get();
         return $query;
     }

@@ -25,7 +25,7 @@
                         <th class="text-center">#</th>
                         <th class="text-center">Nama Lengkap</th>
                         <th class="text-center">No Telephone</th>
-                        <th class="text-center">Alamat</th>
+                        <th class="text-center" style="overflow: auto; margin: 0px; width: 302px;">Alamat</th>
                         <th class="text-center">Is Active</th>
                         <th class="text-center">Level</th>
                         <th class="text-center">Approved By</th>
@@ -39,7 +39,9 @@
                             <td class="text-center"><?= $no++ ?></td>
                             <td><?= $data->nama_lengkap ?></td>
                             <td><?= $data->no_tlp ?></td>
-                            <td><?= $data->alamat ?></td>
+                            <td>
+                                <textarea name="" id="" rows="4" style="overflow: auto; margin: 0px; width: 302px; height: 45px;" readonly><?= $data->alamat ?></textarea>
+                            </td>
                             <td class="text-center">
                                 <?php if ($data->is_active == 1) { ?>
                                     <a href="" class="btn btn-success btn-xs">Aktif</a>
