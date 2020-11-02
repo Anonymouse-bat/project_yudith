@@ -8,7 +8,8 @@ class Lap_users extends CI_Controller
         parent::__construct();
         $this->load->model(['Auth_m', 'Lap_users_m']);
         check_not_login();
-        check_admin_users();
+        check_admin();
+        logout_paksa();
     }
 
     public function index()
@@ -30,12 +31,18 @@ class Lap_users extends CI_Controller
 
         $get_user_data           = $this->Lap_users_m->get_user_data()->result();
         $provinsi                = $this->Lap_users_m->get_provinsi($post['id_provinsi'])->result();
+        $row_provinsi            = $this->Lap_users_m->get_provinsi($post['id_provinsi'])->row();
         $get_all_data            = $this->Lap_users_m->get_all_data($post)->result();
         $get_provinsi_and_date   = $this->Lap_users_m->get_provinsi_and_date($post)->result();
-
+        $start                   = $post['start_date'];
+        $end                     = $post['end_date'];
 
         $tgl        = date('Y-m-d');
         $show = [
+            'row_provinsi' => $row_provinsi,
+            'start' => $start,
+            'end' => $end,
+            // 
             'get_all_data' => $get_all_data,
             'provinsi' => $provinsi,
             'get_provinsi_and_date' => $get_provinsi_and_date,

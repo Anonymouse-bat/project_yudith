@@ -28,6 +28,7 @@
                         <th class="text-center">Users</th>
                         <th class="text-center" style="overflow: auto; margin: 0px; width: 302px;">Kepala Berita</th>
                         <th class="text-center">Tgl Berita</th>
+                        <th class="text-center">Tgl Ditolak</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -40,7 +41,8 @@
                             <td>
                                 <textarea name="" id="" rows="4" style="overflow: auto; margin: 0px; width: 302px; height: 45px;" readonly><?= $data->news_head ?></textarea>
                             </td>
-                            <td class="text-center"><?= $data->updated_news == null ? $data->created_news : $data->updated_news ?></td>
+                            <td class="text-center"><?= $data->created_news ?></td>
+                            <td class="text-center"><?= $data->date_rejected ?></td>
                             <td class="text-center">
                                 <a href="<?= site_url('Rejected/preview/' . $data->keluhan_id) ?>" class="btn btn-default" data-toggle="show" title="Preview">
                                     <i class="fa fa-eye"></i>

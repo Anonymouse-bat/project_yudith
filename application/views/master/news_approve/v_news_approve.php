@@ -33,6 +33,7 @@
                         <th class="text-center">Users</th>
                         <th class="text-center" style="overflow: auto; margin: 0px; width: 302px;">Kepala Berita</th>
                         <th class="text-center">Tgl Berita</th>
+                        <th class="text-center">Tgl Terbit</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -46,6 +47,7 @@
                                 <textarea name="" id="" rows="4" style="overflow: auto; margin: 0px; width: 302px; height: 45px;" readonly><?= $data->news_head ?></textarea>
                             </td>
                             <td class="text-center"><?= $data->created_news ?></td>
+                            <td class="text-center"><?= $data->date_time_approve ?></td>
                             <td class="text-center">
                                 <a href="<?= site_url('News_approve/preview/' . $data->keluhan_id) ?>" class="btn btn-default" data-toggle="show" title="Preview">
                                     <i class="fa fa-eye"></i>

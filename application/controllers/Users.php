@@ -7,6 +7,7 @@ class Users extends CI_Controller
     {
         parent::__construct();
         check_not_login();
+        logout_paksa();
         $this->load->library('form_validation');
         $this->load->model('Users_m');
     }
@@ -23,7 +24,7 @@ class Users extends CI_Controller
 
     public function v_users_admin()
     {
-        check_admin_users();
+        check_admin();
 
         $header = $this->uri->segment(3);
 

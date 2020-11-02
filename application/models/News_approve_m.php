@@ -13,7 +13,7 @@ class News_approve_m extends CI_Model
         }
         $this->db->join('user', 'user.user_id = keluhan.user_id');
         $this->db->where('keluhan.status =', 1);
-        $this->db->order_by('keluhan.created', 'DESC');
+        $this->db->order_by('keluhan.date_time_approve', 'DESC');
         $query = $this->db->get();
 
         return $query;
@@ -24,12 +24,12 @@ class News_approve_m extends CI_Model
         $this->db->select('*, keluhan.created as created_news, keluhan.updated as updated_news');
         $this->db->from('keluhan');
         if ($id != NULL) {
-            $this->db->where('date_news =', $id);
+            $this->db->where('date_approve =', $id);
             $this->db->where('status =', 1);
         }
         $this->db->join('user', 'user.user_id = keluhan.user_id');
         $this->db->where('keluhan.status =', 1);
-        $this->db->order_by('keluhan.created', 'DESC');
+        $this->db->order_by('keluhan.date_time_approve', 'DESC');
         $query = $this->db->get();
 
         return $query;
@@ -39,7 +39,12 @@ class News_approve_m extends CI_Model
     {
         $params['rejected_by']           = $this->session->userdata('user_id');
         $params['is_deleted']            = 1;
-        $params['status']                = 0;
+        $params['status']                = 2;
+        $params['date_rejected']         = date('Y-m-d H:i:s');
+        $params['date_approve']          = NULL;
+        $params['date_time_approve']     = NULL;
+        $params['approve_by']            = NULL;
+
 
         $this->db->where('keluhan_id', $id);
         $this->db->update('keluhan', $params);

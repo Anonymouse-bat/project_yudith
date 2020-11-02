@@ -24,6 +24,7 @@ class users_m extends CI_Model
             $this->db->where('date_user =', $id);
             $this->db->where('is_active =', 0);
         }
+        $this->db->order_by('created', 'DESC');
         $query = $this->db->get();
         return $query;
     }

@@ -67,6 +67,7 @@
             <div class="form-group has-feedback">
                 <input type="file" id="foto_ktp" name="foto_ktp" class="form-control" placeholder="File Ktp" autocomplete="off" required>
                 <span class="glyphicon glyphicon-cloud-upload form-control-feedback"></span>
+                <small><a href="https://www.reduceimages.com/" target="_blank"><span class="text-danger">* Max File Foto 2 Mb </span></a></small>
             </div>
             <div class="form-group has-feedback <?= form_error('password') != NULL ? 'has-error' : null ?>">
                 <input type="password" name="password" class="form-control" placeholder="Password">

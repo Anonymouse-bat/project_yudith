@@ -52,22 +52,40 @@ date_default_timezone_set("Asia/Bangkok");
                         <?php if ($this->fungsi->user_login()->level == 1) { ?>
                             <!-- Waiting Approved  -->
                             <li class="dropdown notifications-menu">
+
+                                <?php
+                                $query = $this->db->query("SELECT * FROM keluhan WHERE status = 0");
+                                $waiting_approve = $query->num_rows();
+                                ?>
+
+                                <?php
+                                $date  = date('Y-m-d');
+                                $query = $this->db->query("SELECT * FROM keluhan WHERE date_news = '$date' AND status = 0");
+                                $waiting_approved_harini = $query->num_rows();
+                                ?>
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-hourglass-start"></i>
-                                    <span class="label label-success">1</span>
+                                    <span class="label label-success"><?= $waiting_approved_harini; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have <b>10</b> notifications</li>
+                                    <li class="header">Ada <b><?= $waiting_approve; ?></b> Antrian Berita</li>
                                     <li>
                                         <ul class="menu">
                                             <li>
-                                                <a href="#">
-                                                    <i class="fa fa-envelope-o text-aqua"></i> 5 Member Hariini, Approve Yuk!
+                                                <a href="<?= site_url('Waiting_approve/index/' . $date) ?>">
+
+                                                    <i class="fa fa-envelope-o text-green"></i>
+                                                    <?php if ($waiting_approved_harini == NULL) { ?>
+                                                        Belum Ada Berita Member Baru Hariini
+                                                    <?php } else { ?>
+                                                        Ada <b><?= $waiting_approved_harini; ?></b> Berita Member Baru Hariini
+                                                    <?php } ?>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="footer"><a href="#">View all</a></li>
+                                    <li class="footer"><a href="<?= site_url('Waiting_approve') ?>">View all</a></li>
                                 </ul>
                             </li>
                         <?php } ?>
@@ -77,7 +95,7 @@ date_default_timezone_set("Asia/Bangkok");
                         <li class="dropdown notifications-menu">
                             <?php
                             $date  = date('Y-m-d');
-                            $query = $this->db->query("SELECT * FROM keluhan WHERE date_news = '$date' AND status = 1");
+                            $query = $this->db->query("SELECT * FROM keluhan WHERE date_approve = '$date' AND status = 1");
                             $news_today = $query->num_rows();
                             ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -184,7 +202,7 @@ date_default_timezone_set("Asia/Bangkok");
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-                <ul class="sidebar-menu" data-widget="tree" style="padding-top: 15px;">
+                <ul class="sidebar-menu" data-widget="tree" style="padding-top: 10px;">
                     <li class="header">Main Page</li>
                     <li <?= $this->uri->segment(1) == 'Keluhan' ? 'class="active"' : null ?>>
                         <a href="<?= site_url('Keluhan') ?>">
@@ -201,18 +219,31 @@ date_default_timezone_set("Asia/Bangkok");
                             </a>
                         </li>
                         <li <?= $this->uri->segment(1) == 'Rejected' ? 'class="active"' : null ?>>
+
+                            <?php
+                            $query = $this->db->query("SELECT * FROM keluhan WHERE is_deleted = 1");
+                            $rejected = $query->num_rows();
+                            ?>
                             <a href="<?= site_url('Rejected') ?>">
-                                <i class="fa fa-ban"></i>
-                                <span>Rejected</span>
+                                <i class="fa fa-ban"></i> <span>Rejected</span>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-red"><?= $rejected ?></small>
+                                </span>
                             </a>
                         </li>
                     <?php } ?>
+
                     <li <?= $this->uri->segment(1) == 'News_approve' ? 'class="active"' : null ?>>
                         <a href="<?= site_url('News_approve') ?>">
-                            <i class="fa fa-line-chart"></i>
-                            <span>Berita Terupdate</span>
+                            <i class="fa fa-line-chart"></i> <span>Berita Terupdate</span>
+                            <?php if ($news_today != NULL) { ?>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-green">new</small>
+                                </span>
+                            <?php } ?>
                         </a>
                     </li>
+
                     <?php if ($this->fungsi->user_login()->level == 1) { ?>
                         <li class="header">Laporan</li>
                         <li <?= $this->uri->segment(1) == 'Lap_users' ? 'class="active"' : null ?>>

@@ -8,6 +8,7 @@ class News_approve extends CI_Controller
         parent::__construct();
         check_not_login();
         $this->load->model('News_approve_m');
+        logout_paksa();
     }
 
     public function index()

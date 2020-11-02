@@ -40,7 +40,7 @@
                             <td>
                                 <textarea name="" id="" rows="4" style="overflow: auto; margin: 0px; width: 302px; height: 45px;" readonly><?= $data->news_head ?></textarea>
                             </td>
-                            <td class="text-center"><?= $data->updated_news == null ? $data->created_news : $data->updated_news ?></td>
+                            <td class="text-center"><?= $data->created_news ?></td>
                             <td class="text-center">
                                 <a href="<?= site_url('Waiting_approve/preview/' . $data->keluhan_id) ?>" class="btn btn-default" data-toggle="show" title="Preview">
                                     <i class="fa fa-eye"></i>

@@ -14,7 +14,7 @@ date_default_timezone_set("Asia/Bangkok");
 <body>
     <div class="text-center">
         <h3>Laporan Data Users</h3>
-        <h5>Filter : </h5>
+        <b>Filter Tgl : </b> <?= indo_date($start) ?> <b>s/d</b> <?= indo_date($end) ?>
     </div>
     <hr style="width: 40%;">
     <b style="text-align: center;"> </b>

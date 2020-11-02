@@ -38,6 +38,16 @@ function check_admin()
 	}
 }
 
+function logout_paksa()
+{
+	$ci = &get_instance();
+
+	$ci->load->library('fungsi');
+	if ($ci->fungsi->user_login()->is_active == 0) {
+		redirect('Auth/logout');
+	}
+}
+
 function indo_date($date)
 {
 	$d = substr($date, 8, 2);

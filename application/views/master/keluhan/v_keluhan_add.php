@@ -37,9 +37,9 @@
                         <?= form_error('news_head', '<div class="text-danger">', '</div>'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="news_image">Image | <i class="text-danger">*</i> Max 5 Mb </label>
+                        <label for="news_image">Image | <small><a href="https://www.reduceimages.com/" target="_blank"><span class="text-danger">* Max File Foto 5 Mb </span></a></small></label>
                         <input type="file" name="news_image" id="news_image" class="form-control" placeholder="Kepala Berita" autocomplete="off">
-                        <i class="text-danger">* Biarkan Kosong jika tidak ada </i>
+                        <span class="text-danger">* Biarkan Kosong jika tidak ada</span>
                     </div>
                     <div class="form-group <?= form_error('messsage_content') != NULL ? 'has-error' : null ?>">
                         <textarea class="textarea" name="messsage_content" id="messsage_content" placeholder="Isi Berita Disini" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= set_value('messsage_content') ?></textarea>
