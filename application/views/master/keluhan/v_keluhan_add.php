@@ -32,8 +32,8 @@
                     <?= $this->session->flashdata('message'); ?>
                     <?php echo form_open_multipart('Keluhan/add'); ?>
                     <div class="form-group <?= form_error('news_head') != NULL ? 'has-error' : null ?>">
-                        <label for="news_head">Kepala Berita <i class="text-danger">*</i></label>
-                        <input type="text" name="news_head" id="news_head" class="form-control" placeholder="Kepala Berita" autofocus autocomplete="off" value="<?= set_value('news_head') ?>">
+                        <label for="news_head">Judul Berita <i class="text-danger">*</i></label>
+                        <input type="text" name="news_head" id="news_head" class="form-control" placeholder="Judul Berita" autofocus autocomplete="off" value="<?= set_value('news_head') ?>">
                         <?= form_error('news_head', '<div class="text-danger">', '</div>'); ?>
                     </div>
                     <div class="form-group">

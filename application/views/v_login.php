@@ -26,7 +26,7 @@
 <body class="hold-transition login-page" style="overflow: hidden;">
     <div class=" login-box">
         <div class="login-logo">
-            <a href="#"><b>Admin</b>LTE</a>
+            <a href="#"><b>Database </b>Provinsi</a>
         </div>
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
@@ -44,12 +44,12 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
                 </div>
             </form>
             <hr>
-            <a href="<?= base_url('Auth/register') ?>" class="text-center">Register a new membership</a>
+            <a href="<?= base_url('Auth/register') ?>" class="text-center">Register untuk member baru</a>
         </div>
     </div>
 

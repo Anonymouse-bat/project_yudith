@@ -27,9 +27,10 @@ class News_approve extends CI_Controller
     public function del()
     {
         check_admin_users();
-        $id = $this->uri->segment(3);
 
-        $this->News_approve_m->del($id);
+        $post = $this->input->post(NULL, TRUE);
+
+        $this->News_approve_m->del($post);
 
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Success!</strong> Data berhasil dihapus </div>');

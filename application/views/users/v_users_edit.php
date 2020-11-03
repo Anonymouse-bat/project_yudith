@@ -31,7 +31,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="user_id" value="<?= $row->user_id ?>">
                         <div class="form-group <?= form_error('nama_lengkap') == true ? 'has-error' : null ?>">
                             <label for="">Nama Lengkap <i class="text-danger">* </i></label>
@@ -40,8 +40,18 @@
                         </div>
                         <div class="form-group <?= form_error('email') == true ? 'has-error' : null ?>">
                             <label for="">No Telephone <i class="text-danger">* </i></label>
-                            <input type="text" name="no_tlp" id="no_tlp" placeholder="Email" class="form-control" value="<?= $this->input->post('no_tlp') ?? $row->no_tlp ?>" autocomplete="off">
+                            <input type="text" name="no_tlp" id="no_tlp" placeholder="Email" class="form-control" value="<?= $this->input->post('no_tlp') ?? $row->no_tlp ?>" autocomplete="off" readonly>
                             <?= form_error('no_tlp', '<div class="text-danger">', '</div>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="news_image">Image <span class="text-danger">* </span>| <small><a href="https://www.reduceimages.com/" target="_blank"><span class="text-danger">* Max File Foto 2 Mb </span></a> |<span><a href="https://www.reduceimages.com/" target="_blank"> Convert disini</a></span></small></label>
+                            <div style="margin-bottom: 5px;">
+                                <a href="<?= base_url('./uploads/ktp_user/') . $row->foto_ktp ?>" download>
+                                    <img src="<?= base_url('./uploads/ktp_user/') . $row->foto_ktp ?>" style="width: 300px; height: 150px;">
+                                </a>
+                            </div>
+                            <input type="file" id="foto_ktp" name="foto_ktp" class="form-control" placeholder="File Ktp" autocomplete="off">
+                            <span class="text-danger">* Biarkan Kosong jika tidak diganti</span>
                         </div>
                         <div class="form-group <?= form_error('alamat') == true ? 'has-error' : null ?>">
                             <label for="">Alamat <i class="text-danger">* </i></label>

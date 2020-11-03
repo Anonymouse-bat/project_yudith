@@ -29,6 +29,7 @@
                         <th class="text-center" style="overflow: auto; margin: 0px; width: 302px;">Kepala Berita</th>
                         <th class="text-center">Tgl Berita</th>
                         <th class="text-center">Tgl Ditolak</th>
+                        <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -43,6 +44,17 @@
                             </td>
                             <td class="text-center"><?= $data->created_news ?></td>
                             <td class="text-center"><?= $data->date_rejected ?></td>
+                            <!-- Status -->
+                            <?php if ($data->status == 2) { ?>
+                                <td class="text-center">
+                                    <span class="btn btn-danger">Rejected</span>
+                                </td>
+                            <?php } elseif ($data->status == 3) { ?>
+                                <td class="text-center">
+                                    <span class="btn btn-warning">Revisi</span>
+                                </td>
+                            <?php } ?>
+                            <!-- End Status -->
                             <td class="text-center">
                                 <a href="<?= site_url('Rejected/preview/' . $data->keluhan_id) ?>" class="btn btn-default" data-toggle="show" title="Preview">
                                     <i class="fa fa-eye"></i>

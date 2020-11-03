@@ -35,12 +35,46 @@ class Users extends CI_Controller
     public function edit()
     {
         $post = $this->input->post(NULL, TRUE);
+        // Image
+        $config['upload_path']          = './uploads/ktp_user/';
+        $config['allowed_types']        = 'jpg|jpeg|png';
+        $config['max_size']             = 2048;
+        $config['file_name']            = 'KTP-' . indo_date(date('Y-m-d')) . '-' . substr(md5(rand()), 0, 10);
 
-        $this->Users_m->edit($post);
+        $this->load->library('upload', $config);
 
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil diubah </div>');
-            redirect('Users/v_users_data_member');
+        if (@$_FILES['foto_ktp']['name'] != NULL) {
+
+            if ($this->upload->do_upload('foto_ktp')) {
+
+                $keluhan = $this->Users_m->get($post['user_id'])->row();
+
+                if ($keluhan->foto_ktp != NULL) {
+                    $target_file = './uploads/foto_ktp/' . $keluhan->foto_ktp;
+                    unlink($target_file);
+                }
+
+                $post['foto_ktp'] = $this->upload->data('file_name');
+
+                $this->Users_m->edit($post);
+
+                if ($this->db->affected_rows() > 0) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
+                    redirect('Users/v_users_data_member');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Error!</strong> Data gagal disimpan, Harap cek type file image dan size</div>');
+                $this->template->load('v_template', 'users/v_users_admin');
+            }
+        } else {
+            $post['foto_ktp'] = null;
+
+            $this->Users_m->edit($post);
+
+            if ($this->db->affected_rows() > 0) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
+                redirect('Users/v_users_data_member');
+            }
         }
     }
 
@@ -65,13 +99,49 @@ class Users extends CI_Controller
         } else {
 
             $post = $this->input->post(NULL, TRUE);
+            // Image
+            $config['upload_path']          = './uploads/ktp_user/';
+            $config['allowed_types']        = 'jpg|jpeg|png';
+            $config['max_size']             = 2048;
+            $config['file_name']            = 'KTP-' . indo_date(date('Y-m-d')) . '-' . substr(md5(rand()), 0, 10);
 
-            $this->Users_m->edit($post);
+            $this->load->library('upload', $config);
 
-            if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil diubah </div>');
-                redirect('Users');
+            if (@$_FILES['foto_ktp']['name'] != NULL) {
+
+                if ($this->upload->do_upload('foto_ktp')) {
+
+                    $keluhan = $this->Users_m->get($post['user_id'])->row();
+
+                    if ($keluhan->foto_ktp != NULL) {
+                        $target_file = './uploads/foto_ktp/' . $keluhan->foto_ktp;
+                        unlink($target_file);
+                    }
+
+                    $post['foto_ktp'] = $this->upload->data('file_name');
+
+                    $this->Users_m->edit($post);
+
+                    if ($this->db->affected_rows() > 0) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
+                        redirect('Users');
+                    }
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Error!</strong> Data gagal disimpan, Harap cek type file image dan size</div>');
+                    $this->template->load('v_template', 'users/v_users_admin');
+                }
+            } else {
+                $post['foto_ktp'] = null;
+
+                $this->Users_m->edit($post);
+
+                if ($this->db->affected_rows() > 0) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
+                    redirect('Users');
+                }
             }
+
+            // End Image
         }
     }
 

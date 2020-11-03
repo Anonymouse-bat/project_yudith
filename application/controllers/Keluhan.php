@@ -84,26 +84,83 @@ class Keluhan extends CI_Controller
         } else {
             $post = $this->input->post(NULL, TRUE);
 
-            // Image
-            $config['upload_path']          = './uploads/news_image/';
-            $config['allowed_types']        = 'jpg|jpeg|png';
-            $config['max_size']             = 5120;
-            $config['file_name']            = 'News-' . indo_date(date('Y-m-d')) . '-' . substr(md5(rand()), 0, 10);
+            $revisi = $this->Keluhan_m->get($post['keluhan_id'])->row();
 
-            $this->load->library('upload', $config);
+            if ($revisi->is_deleted == 1) {
 
-            if (@$_FILES['news_image']['name'] != NULL) {
-                if ($this->upload->do_upload('news_image')) {
+                $config['upload_path']          = './uploads/news_image/';
+                $config['allowed_types']        = 'jpg|jpeg|png';
+                $config['max_size']             = 5120;
+                $config['file_name']            = 'News-' . indo_date(date('Y-m-d')) . '-' . substr(md5(rand()), 0, 10);
 
-                    $keluhan = $this->Keluhan_m->get($post['keluhan_id'])->row();
+                $this->load->library('upload', $config);
 
-                    if ($keluhan->news_image != NULL) {
-                        $target_file = './uploads/news_image/' . $keluhan->news_image;
-                        unlink($target_file);
+                if (@$_FILES['news_image']['name'] != NULL) {
+                    if ($this->upload->do_upload('news_image')) {
+
+                        $keluhan = $this->Keluhan_m->get($post['keluhan_id'])->row();
+
+                        if ($keluhan->news_image != NULL) {
+                            $target_file = './uploads/news_image/' . $keluhan->news_image;
+                            unlink($target_file);
+                        }
+
+
+                        $post['news_image'] = $this->upload->data('file_name');
+
+                        $this->Keluhan_m->edit_revisi($post);
+
+                        if ($this->db->affected_rows() > 0) {
+                            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
+                            redirect('Keluhan');
+                        }
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Error!</strong> Data gagal disimpan, Harap cek type file image dan size</div>');
+                        $this->template->load('v_template', 'master/keluhan/v_keluhan_add');
                     }
+                } else {
+                    $post['news_image'] = null;
 
+                    $this->Keluhan_m->edit_revisi($post);
 
-                    $post['news_image'] = $this->upload->data('file_name');
+                    if ($this->db->affected_rows() > 0) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
+                        redirect('Keluhan');
+                    }
+                }
+            } else {
+
+                $config['upload_path']          = './uploads/news_image/';
+                $config['allowed_types']        = 'jpg|jpeg|png';
+                $config['max_size']             = 5120;
+                $config['file_name']            = 'News-' . indo_date(date('Y-m-d')) . '-' . substr(md5(rand()), 0, 10);
+
+                $this->load->library('upload', $config);
+
+                if (@$_FILES['news_image']['name'] != NULL) {
+                    if ($this->upload->do_upload('news_image')) {
+
+                        $keluhan = $this->Keluhan_m->get($post['keluhan_id'])->row();
+
+                        if ($keluhan->news_image != NULL) {
+                            $target_file = './uploads/news_image/' . $keluhan->news_image;
+                            unlink($target_file);
+                        }
+
+                        $post['news_image'] = $this->upload->data('file_name');
+
+                        $this->Keluhan_m->edit($post);
+
+                        if ($this->db->affected_rows() > 0) {
+                            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
+                            redirect('Keluhan');
+                        }
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Error!</strong> Data gagal disimpan, Harap cek type file image dan size</div>');
+                        $this->template->load('v_template', 'master/keluhan/v_keluhan_add');
+                    }
+                } else {
+                    $post['news_image'] = null;
 
                     $this->Keluhan_m->edit($post);
 
@@ -111,21 +168,8 @@ class Keluhan extends CI_Controller
                         $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
                         redirect('Keluhan');
                     }
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>Error!</strong> Data gagal disimpan, Harap cek type file image dan size</div>');
-                    $this->template->load('v_template', 'master/keluhan/v_keluhan_add');
-                }
-            } else {
-                $post['news_image'] = null;
-
-                $this->Keluhan_m->edit($post);
-
-                if ($this->db->affected_rows() > 0) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Data berhasil disimpan</div>');
-                    redirect('Keluhan');
                 }
             }
-            // End Image
         }
     }
 

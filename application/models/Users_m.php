@@ -37,6 +37,10 @@ class users_m extends CI_Model
         $params['approve_by']           = $this->fungsi->user_login()->nama_lengkap;
         $params['updated']              = date('Y-m-d H:i:s');
 
+        if ($post['foto_ktp'] != NULL) {
+            $params['foto_ktp']             = $post['foto_ktp'];
+        }
+
         if ($post['password'] != NULL) {
             $params['password']     = password_hash($post['password'], PASSWORD_DEFAULT);
         }

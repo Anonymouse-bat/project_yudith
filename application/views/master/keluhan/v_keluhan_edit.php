@@ -33,8 +33,8 @@
                     <form action="" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="keluhan_id" id="keluhan_id" value="<?= $row->keluhan_id ?>">
                         <div class="form-group <?= form_error('news_head') != NULL ? 'has-error' : null ?>">
-                            <label for="news_head">Kepala Berita <i class="text-danger">*</i></label>
-                            <input type="text" name="news_head" id="news_head" class="form-control" placeholder="Kepala Berita" autocomplete="off" value="<?= $this->input->post('news_head') ?? $row->news_head ?>">
+                            <label for="news_head">Judul Berita <i class="text-danger">*</i></label>
+                            <input type="text" name="news_head" id="news_head" class="form-control" placeholder="Judul Berita" autocomplete="off" value="<?= $this->input->post('news_head') ?? $row->news_head ?>">
                             <?= form_error('news_head', '<div class="text-danger">', '</div>'); ?>
                         </div>
                         <div class="form-group">

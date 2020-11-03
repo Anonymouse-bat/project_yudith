@@ -273,7 +273,7 @@ date_default_timezone_set("Asia/Bangkok");
                 <b>Version</b> 2.4.0
             </div>
             <div class="text-center">
-                <strong style="text-align: center;">&copy; Copyright <?= date('Y') ?> | Built <i style="color: salmon" class="glyphicon glyphicon-heart"></i> By. <a href="https://nikinik96.github.io/nikidwijananto.github.io/" target="_blank">Niki Dwijananto</a></strong>
+                <strong style="text-align: center;">&copy; Copyright <?= date('Y') ?> | Built <i style="color: salmon" class="glyphicon glyphicon-heart"></i> By. Database Provinsi</a></strong>
             </div>
         </footer>
     </div>

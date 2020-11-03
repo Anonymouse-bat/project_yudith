@@ -48,9 +48,9 @@
                                 <a href="<?= site_url('Waiting_approve/edit/' . $data->keluhan_id) ?>" class="btn btn-success" data-toggle="show" title="Edit">
                                     <i class=" fa fa-edit"></i>
                                 </a>
-                                <a href="<?= site_url('Waiting_approve/del/' . $data->keluhan_id) ?>" class="btn btn-danger" data-toggle="show" title="Hapus" onclick="return confirm('Data <?= $data->news_head ?> akan dihapus, Apakah Yakin ?')">
+                                <button type="button" class="btn btn-danger cetak" id="select" data-keluhan_id="<?= $data->keluhan_id ?>" data-toggle="show" title="Rejected">
                                     <i class="fa fa-trash"></i>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                     <?php } ?>
@@ -59,3 +59,54 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert alert-danger">
+                    <center><b>Rejected ?</b></center>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="<?= site_url('Waiting_approve/del') ?>">
+                    <div class="form-group">
+                        <input type="hidden" name="keluhan_id" id="keluhan_id" class="form-control" readonly>
+                    </div>
+                    <textarea name="noted" id="noted" cols="30" rows="4" placeholder="Catatan" class="form-control" autocomplete="off" autofocus required></textarea>
+                    <hr style="border: none;border-bottom: 1px solid black;width: 80%;">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-danger " data-toggle="tooltip" title="Back" onclick="refreshPage()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
+                        <button type="submit" id="keluhan_id" class="btn btn-primary" id="select" data-toggle="show" title="Submit"><i class="fa fa-plus"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '#select', function() {
+
+            $('#keluhan_id').val($(this).data('keluhan_id'));
+
+            $('#exampleModal').modal('show');
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $(".cetak").click(function() {
+            $("#exampleModal").modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        });
+    });
+</script>
+<script>
+    function refreshPage() {
+        window.location.reload();
+    }
+</script>

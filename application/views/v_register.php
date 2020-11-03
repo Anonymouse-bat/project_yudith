@@ -26,7 +26,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="<?= base_url('assets') ?>/index2.html"><b>Admin</b>LTE</a>
+            <a href="<?= base_url('assets') ?>/index2.html"><b>Register</b> Member</a>
         </div>
 
         <div class="register-box-body">
@@ -38,7 +38,7 @@
                 <?= form_error('nama_lengkap', '<div class="text-danger">', '</div>'); ?>
             </div>
             <div class="form-group has-feedback <?= form_error('no_tlp') != NULL ? 'has-error' : null ?>">
-                <input type="number" id="no_tlp" name="no_tlp" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;" class="form-control" placeholder="No Telephone" value="<?= set_value('no_tlp') ?>" autocomplete="off">
+                <input type="text" id="no_tlp" onkeypress="return isNumberKey(event)" name="no_tlp" class="form-control" placeholder="No Telephone" value="<?= set_value('no_tlp') ?>" autocomplete="off">
                 <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
                 <?= form_error('no_tlp', '<div class="text-danger">', '</div>'); ?>
             </div>
@@ -67,7 +67,7 @@
             <div class="form-group has-feedback">
                 <input type="file" id="foto_ktp" name="foto_ktp" class="form-control" placeholder="File Ktp" autocomplete="off" required>
                 <span class="glyphicon glyphicon-cloud-upload form-control-feedback"></span>
-                <small><a href="https://www.reduceimages.com/" target="_blank"><span class="text-danger">* Max File Foto 2 Mb </span></a></small>
+                <small><a href="https://www.reduceimages.com/" target="_blank"><span class="text-danger">* Max File Foto 2 Mb </span></a> |<span><a href="https://www.reduceimages.com/" target="_blank"> Convert disini</a></span></small>
             </div>
             <div class="form-group has-feedback <?= form_error('password') != NULL ? 'has-error' : null ?>">
                 <input type="password" name="password" class="form-control" placeholder="Password">
@@ -85,7 +85,7 @@
             </div>
             </form>
             <hr>
-            <a href="<?= base_url('Auth') ?>" class="text-center">I already have a membership</a>
+            <a href="<?= base_url('Auth') ?>" class="text-center">Sudah punya account ? Silahkan Login</a>
         </div>
     </div>
 
@@ -100,7 +100,15 @@
             $('.select2_jk').select2();
 
         });
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
     </script>
+
 </body>
 
 </html>

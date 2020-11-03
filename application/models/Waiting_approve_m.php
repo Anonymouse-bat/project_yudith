@@ -52,14 +52,15 @@ class Waiting_approve_m extends CI_Model
         $this->db->update('keluhan', $params);
     }
 
-    public function del($id)
+    public function del($post)
     {
         $params['rejected_by']           = $this->session->userdata('user_id');
+        $params['noted']                 = $post['noted'];
         $params['is_deleted']            = 1;
         $params['status']                = 2;
         $params['date_rejected']         = date('Y-m-d H:i:s');
 
-        $this->db->where('keluhan_id', $id);
+        $this->db->where('keluhan_id', $post['keluhan_id']);
         $this->db->update('keluhan', $params);
     }
 }

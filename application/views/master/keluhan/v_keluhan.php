@@ -33,6 +33,7 @@
                         <th class="text-center" style="overflow: auto; margin: 0px; width: 302px;">Kepala Berita</th>
                         <th class="text-center">Tgl Berita</th>
                         <th class="text-center">Status</th>
+                        <th class="text-center" style="overflow: auto; margin: 0px; width: 202px;">Catatan</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -49,11 +50,7 @@
                             </td>
 
                             <!-- Status -->
-                            <?php if ($data->is_deleted_keluhan == 1) { ?>
-                                <td class="text-center">
-                                    <span class="btn btn-danger">Rejected</span>
-                                </td>
-                            <?php } elseif ($data->status == 1) { ?>
+                            <?php if ($data->status == 1) { ?>
                                 <td class="text-center">
                                     <span class="btn btn-success">Go Public</span>
                                 </td>
@@ -61,23 +58,49 @@
                                 <td class="text-center">
                                     <span class="btn btn-primary">Dalam Antrian</span>
                                 </td>
+                            <?php } elseif ($data->status ==  3) { ?>
+                                <td class="text-center">
+                                    <span class="btn btn-warning">Revisi</span>
+                                </td>
+                            <?php } elseif ($data->is_deleted_keluhan == 1) { ?>
+                                <td class="text-center">
+                                    <span class="btn btn-danger">Rejected</span>
+                                </td>
                             <?php } ?>
                             <!-- End Status -->
+
+                            <!-- Noted -->
+                            <?php if ($data->noted != null) { ?>
+                                <td>
+                                    <textarea name="" id="" rows="4" style="overflow: auto; margin: 0px; width: 202px; height: 45px;" readonly><?= $data->noted ?></textarea>
+                                </td>
+                            <?php } else { ?>
+                                <td class="text-center">
+                                    <span class="text-center">-</span>
+                                </td>
+                            <?php } ?>
+                            <!-- Noted -->
+
                             <!-- Edit -->
                             <td class="text-center">
-                                <a href="<?= site_url('Keluhan/preview/' . $data->keluhan_id) ?>" class="btn btn-default" data-toggle="show" title="Preview">
+                                <a href="<?= site_url('Keluhan/preview/' . $data->keluhan_id) ?>" class="btn btn-default btn-sm" data-toggle="show" title="Preview">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="<?= site_url('Keluhan/edit/' . $data->keluhan_id) ?>" class="btn btn-success" data-toggle="show" title="Edit">
-                                    <i class=" fa fa-edit"></i>
-                                </a>
-                                <!-- End Preview -->
+
                                 <?php if ($data->status == 1 and $data->level == 2) { ?>
+                                    <button disabled class="btn btn-success btn-sm" data-toggle="show" title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <!-- End Preview -->
                                     <button disabled class="btn btn-danger btn-sm" data-toggle="show" title="Hapus">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 <?php } else { ?>
-                                    <a href="<?= site_url('Keluhan/del/' . $data->keluhan_id) ?>" class="btn btn-danger" onclick="return confirm('Data <?= $data->news_head ?> akan dihapus, Apakah Yakin ?')" data-toggle="show" title="Hapus">
+                                    <a href="<?= site_url('Keluhan/edit/' . $data->keluhan_id) ?>" class="btn btn-success btn-sm" data-toggle="show" title="Edit">
+                                        <i class=" fa fa-edit"></i>
+                                    </a>
+
+                                    <a href="<?= site_url('Keluhan/del/' . $data->keluhan_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Data <?= $data->news_head ?> akan dihapus, Apakah Yakin ?')" data-toggle="show" title="Hapus">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 <?php } ?>

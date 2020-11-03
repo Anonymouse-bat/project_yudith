@@ -27,6 +27,7 @@ class Rejected_m extends CI_Model
         $params['date_approve']         = date('Y-m-d');
         $params['approve_by']           = $this->session->userdata('user_id');
         $params['status']               = 1;
+        $params['noted']                = NULL;
         $params['is_deleted']           = NULL;
         $params['date_rejected']        = NULL;
         $params['rejected_by']          = NULL;

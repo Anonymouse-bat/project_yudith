@@ -19,7 +19,7 @@
         <div class="box-header">
             <h4>Laporan Data Users
                 <div class="pull-right">
-                    <button type="button" class="btn btn-warning cetak" data-toggle="modal" title="Cetak"><i class="glyphicon glyphicon-print"></i></button>
+                    <button type="button" class="btn btn-warning cetak" data-toggle="show" title="Cetak"><i class="glyphicon glyphicon-print"></i></button>
                 </div>
             </h4>
         </div>
@@ -34,6 +34,7 @@
                         <th class="text-center" style="overflow: auto; margin: 0px; width: 302px;">Alamat</th>
                         <th class="text-center">Provinsi</th>
                         <th class="text-center">Created</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +50,11 @@
                             </td>
                             <td class="text-center"><?= $data->nama_provinsi ?></td>
                             <td class="text-center"><?= $data->created ?></td>
+                            <td class="text-center">
+                                <a href="<?= base_url('./uploads/ktp_user/' . $data->foto_ktp); ?>" download class="btn btn-success" data-toggle="show" title="Download KTP">
+                                    <i class="fa fa-download"></i>
+                                </a>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>

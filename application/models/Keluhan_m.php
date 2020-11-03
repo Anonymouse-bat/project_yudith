@@ -65,6 +65,21 @@ class Keluhan_m extends CI_Model
         $this->db->update('keluhan', $params);
     }
 
+    public function edit_revisi($post)
+    {
+        $params['news_head']            = $post['news_head'];
+        $params['messsage_content']     = $post['messsage_content'];
+        $params['updated']              = date('Y-m-d H:i:s');
+
+        if ($post['news_image'] != NULL) {
+            $params['news_image']           = $post['news_image'];
+        }
+        $params['status']                = 3;
+
+        $this->db->where('keluhan_id', $post['keluhan_id']);
+        $this->db->update('keluhan', $params);
+    }
+
 
     public function del($id)
     {
