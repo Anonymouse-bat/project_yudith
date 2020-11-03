@@ -21,8 +21,23 @@ class Keluhan extends CI_Controller
     public function add()
     {
 
-        $this->form_validation->set_rules('news_head', 'Kepala Berita', 'trim|required');
-        $this->form_validation->set_rules('messsage_content', 'Isi Berita', 'required|min_length[250]');
+        $this->form_validation->set_rules(
+            'news_head',
+            'Judul Berita',
+            'trim|required',
+            array(
+                'required'      => '%s Wajib Diisi.',
+            )
+        );
+        $this->form_validation->set_rules(
+            'messsage_content',
+            'Isi Berita',
+            'required|min_length[250]',
+            array(
+                'required'      => '%s Wajib Diisi.',
+                'min_length'     => '%s Minimal 250 Karakter.'
+            )
+        );
 
         if ($this->form_validation->run() == FALSE) {
             $this->template->load('v_template', 'master/keluhan/v_keluhan_add');
@@ -74,8 +89,23 @@ class Keluhan extends CI_Controller
 
     public function edit($id)
     {
-        $this->form_validation->set_rules('news_head', 'Kepala Berita', 'trim|required');
-        $this->form_validation->set_rules('messsage_content', 'Isi Berita', 'required|min_length[250]');
+        $this->form_validation->set_rules(
+            'news_head',
+            'Judul Berita',
+            'trim|required',
+            array(
+                'required'      => '%s Wajib Diisi.',
+            )
+        );
+        $this->form_validation->set_rules(
+            'messsage_content',
+            'Isi Berita',
+            'required|min_length[250]',
+            array(
+                'required'      => '%s Wajib Diisi.',
+                'min_length'     => '%s Minimal 250 Karakter.'
+            )
+        );
 
         if ($this->form_validation->run() == FALSE) {
 

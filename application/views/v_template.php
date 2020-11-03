@@ -256,7 +256,7 @@ date_default_timezone_set("Asia/Bangkok");
                     <li class="header">Users</li>
                     <li <?= $this->uri->segment(1) == 'Users' ? 'class="active"' : null ?>>
                         <a href="<?= site_url('Users') ?>">
-                            <i class="fa fa-user-o text-red"></i>
+                            <i class="fa fa-users text-red"></i>
                             <span>Users</span>
                         </a>
                     </li>

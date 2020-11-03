@@ -17,8 +17,22 @@ class Auth extends CI_Controller
         $no_tlp      = $this->input->post('no_tlp');
         $pswd        = $this->input->post('password');
 
-        $this->form_validation->set_rules('no_tlp', 'No Telephone', 'required|trim');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        $this->form_validation->set_rules(
+            'no_tlp',
+            'No Telephone',
+            'required|trim',
+            array(
+                'required'      => '%s Wajib Diisi.',
+            )
+        );
+        $this->form_validation->set_rules(
+            'password',
+            'Password',
+            'required|trim',
+            array(
+                'required'      => '%s Wajib Diisi.',
+            )
+        );
 
         if ($this->form_validation->run() == FALSE) {
 

@@ -80,13 +80,73 @@ class Users extends CI_Controller
 
     public function edit_admin($id)
     {
-        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
-        $this->form_validation->set_rules('no_tlp', 'No Telephone', 'trim|required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
-        $this->form_validation->set_rules('password', 'Password', 'trim|min_length[4]|matches[retype_password]');
-        $this->form_validation->set_rules('retype_password', 'Password Confirmation', 'trim|matches[password]');
-        $this->form_validation->set_rules('is_active', 'Is Active', 'trim|required');
-        $this->form_validation->set_rules('level', 'Level', 'trim|required');
+
+
+        $this->form_validation->set_rules(
+            'nama_lengkap',
+            'Nama Lengkap',
+            'required|trim',
+            array(
+                'required'      => '%s Wajib Diisi.',
+            )
+        );
+        $this->form_validation->set_rules(
+            'no_tlp',
+            'No Telephone',
+            'required|min_length[9]|max_length[13]|trim|is_unique[user.no_tlp]',
+            array(
+                'required'      => '%s Wajib Diisi.',
+                'is_unique'     => '%s Sudah Terdaftar.',
+                'max_length'     => '%s Maximal 13 Digit.',
+                'min_length'     => '%s Minimal 9 Digit.'
+            )
+        );
+
+        $this->form_validation->set_rules(
+            'alamat',
+            'Alamat Rumah Saat ini',
+            'required|trim',
+            array(
+                'required'      => '%s Wajib Diisi.',
+            )
+        );
+
+        $this->form_validation->set_rules(
+            'password',
+            'Password',
+            'required|matches[password]|min_length[4]',
+            array(
+                'required'      => '%s Wajib Diisi.',
+                'min_length'     => '%s Minimal 4 Digit.'
+            )
+        );
+
+        $this->form_validation->set_rules(
+            'retype_password',
+            'Password Confirmation',
+            'required|matches[password]',
+            array(
+                'required'      => '%s Wajib Diisi.',
+                'min_length'     => '%s Minimal 4 Digit.'
+            )
+        );
+
+        $this->form_validation->set_rules(
+            'is_active',
+            'Is Active',
+            'trim|required',
+            array(
+                'required'      => '%s Wajib Diisi.',
+            )
+        );
+        $this->form_validation->set_rules(
+            'level',
+            'Level',
+            'trim|required',
+            array(
+                'required'      => '%s Wajib Diisi.',
+            )
+        );
 
         if ($this->form_validation->run() == FALSE) {
 
