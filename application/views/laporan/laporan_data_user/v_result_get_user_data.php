@@ -8,7 +8,7 @@ date_default_timezone_set("Asia/Bangkok");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>Laporan Pengeluaran_<?= date('Y-m-d') ?></title>
+    <title>Laporan_data_user_<?= date('Y-m-d') ?></title>
 </head>
 
 <body>
@@ -35,17 +35,23 @@ date_default_timezone_set("Asia/Bangkok");
         </thead>
         <tbody>
             <?php $no = 1; ?>
-            <?php foreach ($get_user_data as $key => $data) { ?>
+            <?php if ($get_user_data != NULL) { ?>
+                <?php foreach ($get_user_data as $key => $data) { ?>
+                    <tr>
+                        <td class="text-center"><?= $no++ ?></td>
+                        <td><?= $data->nama_lengkap ?></td>
+                        <td class="text-center"><?= $data->jk == 1 ? 'Pria' : 'Wanita' ?></td>
+                        <td class="text-center"><?= $data->no_tlp ?></td>
+                        <td>
+                            <?= $data->alamat ?>
+                        </td>
+                        <td class="text-center"><?= $data->nama_provinsi ?></td>
+                        <td class="text-center"><?= $data->created ?></td>
+                    </tr>
+                <?php } ?>
+            <?php } else { ?>
                 <tr>
-                    <td class="text-center"><?= $no++ ?></td>
-                    <td><?= $data->nama_lengkap ?></td>
-                    <td class="text-center"><?= $data->jk == 1 ? 'Pria' : 'Wanita' ?></td>
-                    <td class="text-center"><?= $data->no_tlp ?></td>
-                    <td>
-                        <?= $data->alamat ?>
-                    </td>
-                    <td class="text-center"><?= $data->nama_provinsi ?></td>
-                    <td class="text-center"><?= $data->created ?></td>
+                    <td colspan='7' class="text-center">Data Tidak ditemukan</td>
                 </tr>
             <?php } ?>
         </tbody>

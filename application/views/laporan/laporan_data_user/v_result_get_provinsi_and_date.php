@@ -16,7 +16,11 @@ date_default_timezone_set("Asia/Bangkok");
         <h3>Laporan Data Users</h3>
         <b>Filter Tgl : </b> <?= indo_date($start) ?> <b>s/d</b> <?= indo_date($end) ?>
         <br>
-        <?= $row_provinsi->nama_provinsi ?>
+        <?php if ($row_provinsi != NULL) { ?>
+            <?= $row_provinsi->nama_provinsi ?>
+        <?php } else { ?>
+            Not Found
+        <?php } ?>
     </div>
     <hr style="width: 40%;">
     <b style="text-align: center;"> </b>
@@ -37,17 +41,24 @@ date_default_timezone_set("Asia/Bangkok");
         </thead>
         <tbody>
             <?php $no = 1; ?>
-            <?php foreach ($get_provinsi_and_date as $key => $data) { ?>
+            <?php if ($get_provinsi_and_date != NULL) { ?>
+
+                <?php foreach ($get_provinsi_and_date as $key => $data) { ?>
+                    <tr>
+                        <td class="text-center"><?= $no++ ?></td>
+                        <td><?= $data->nama_lengkap ?></td>
+                        <td class="text-center"><?= $data->jk == 1 ? 'Pria' : 'Wanita' ?></td>
+                        <td class="text-center"><?= $data->no_tlp ?></td>
+                        <td>
+                            <?= $data->alamat ?>
+                        </td>
+                        <td class="text-center"><?= $data->nama_provinsi ?></td>
+                        <td class="text-center"><?= $data->created ?></td>
+                    </tr>
+                <?php } ?>
+            <?php } else { ?>
                 <tr>
-                    <td class="text-center"><?= $no++ ?></td>
-                    <td><?= $data->nama_lengkap ?></td>
-                    <td class="text-center"><?= $data->jk == 1 ? 'Pria' : 'Wanita' ?></td>
-                    <td class="text-center"><?= $data->no_tlp ?></td>
-                    <td>
-                        <?= $data->alamat ?>
-                    </td>
-                    <td class="text-center"><?= $data->nama_provinsi ?></td>
-                    <td class="text-center"><?= $data->created ?></td>
+                    <td colspan='7' class="text-center">Data Tidak ditemukan</td>
                 </tr>
             <?php } ?>
         </tbody>

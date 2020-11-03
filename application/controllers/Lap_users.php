@@ -37,7 +37,7 @@ class Lap_users extends CI_Controller
         $start                   = $post['start_date'];
         $end                     = $post['end_date'];
 
-        $tgl        = date('Y-m-d');
+        $tgl        = date('Y-m-d H:i:s');
         $show = [
             'row_provinsi' => $row_provinsi,
             'start' => $start,
@@ -51,23 +51,23 @@ class Lap_users extends CI_Controller
         if ($post['start_date'] == NULL and $post['id_provinsi'] == NULL) {
 
             $html = $this->load->view('laporan/laporan_data_user/v_result_get_user_data', $show, true);
-            $this->fungsi->PdfGenerator($html, 'Lap_penjualan_' . $tgl, 'A4', 'landscape');
+            $this->fungsi->PdfGenerator($html, 'Laporan_semua_data_user_' . $tgl, 'A4', 'landscape');
         } else {
 
             if ($post['start_date'] != NULL) {
                 if ($post['id_provinsi'] != NULL) {
 
                     $html = $this->load->view('laporan/laporan_data_user/v_result_get_provinsi_and_date', $show, true);
-                    $this->fungsi->PdfGenerator($html, 'Lap_penjualan_' . $tgl, 'A4', 'landscape');
+                    $this->fungsi->PdfGenerator($html, 'Lap_data_user_provinsi_and_date' . $tgl, 'A4', 'landscape');
                 } else {
 
                     $html = $this->load->view('laporan/laporan_data_user/v_result_all_data_user', $show, true);
-                    $this->fungsi->PdfGenerator($html, 'Lap_penjualan_' . $tgl, 'A4', 'landscape');
+                    $this->fungsi->PdfGenerator($html, 'Laporan_data_user_' . $tgl, 'A4', 'landscape');
                 }
             } else {
 
                 $html = $this->load->view('laporan/laporan_data_user/v_result_data_user_provinsi', $show, true);
-                $this->fungsi->PdfGenerator($html, 'Lap_penjualan_' . $tgl, 'A4', 'landscape');
+                $this->fungsi->PdfGenerator($html, 'Lap_data_user_provinsi_' . $tgl, 'A4', 'landscape');
             }
         }
     }
