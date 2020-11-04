@@ -96,10 +96,16 @@
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 <?php } else { ?>
-                                    <a href="<?= site_url('Keluhan/edit/' . $data->keluhan_id) ?>" class="btn btn-success btn-sm" data-toggle="show" title="Edit">
-                                        <i class=" fa fa-edit"></i>
-                                    </a>
+                                    <?php if ($data->status == 2) { ?>
+                                        <a href="<?= site_url('Keluhan/edit/' . $data->keluhan_id) ?>" class="btn btn-warning btn-sm" data-toggle="show" title="Revisi ?">
+                                            <i class=" fa fa-edit"></i>
+                                        </a>
 
+                                    <?php } else { ?>
+                                        <a href="<?= site_url('Keluhan/edit/' . $data->keluhan_id) ?>" class="btn btn-success btn-sm" data-toggle="show" title="Edit">
+                                            <i class=" fa fa-edit"></i>
+                                        </a>
+                                    <?php } ?>
                                     <a href="<?= site_url('Keluhan/del/' . $data->keluhan_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Data <?= $data->news_head ?> akan dihapus, Apakah Yakin ?')" data-toggle="show" title="Hapus">
                                         <i class="fa fa-trash"></i>
                                     </a>
